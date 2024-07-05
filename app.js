@@ -6,8 +6,11 @@ const path = require("path");
 const session = require("express-session");
 const flash = require("connect-flash");
 const { log } = require("console");
+const usuarios = require("./routes/usuarios");
 require("./models/Postagem");
 require("./models/Categoria");
+const passport = require("passport");
+require("./config/auth")(passport);
 
 const Categoria = mongoose.model("Categorias");
 const Postagem = mongoose.model("Postagens");
@@ -25,6 +28,9 @@ app.use(
     saveUnitialized: true,
   })
 );
+
+app.use(passport.initialize());
+app.use(passport.session());
 app.use(flash());
 
 //middleware
@@ -113,7 +119,7 @@ app.get("/categorias/:slug", (req, res) => {
             });
           })
           .catch((err) => {
-            req.flash("error_msg", "Houve um erro ao listart os posts");
+            req.flash("error_msg", "Houve um erro ao listar os posts");
             res.redirect("/");
           });
       } else {
@@ -131,6 +137,8 @@ app.get("/categorias/:slug", (req, res) => {
 });
 
 app.use("/admin", admin);
+
+app.use("/usuarios", usuarios);
 
 // Outros
 const port = 3000;
