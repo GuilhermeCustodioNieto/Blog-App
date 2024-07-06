@@ -37,6 +37,8 @@ app.use(flash());
 app.use((req, res, next) => {
   res.locals.success_msg = req.flash("success_msg");
   res.locals.error_msg = req.flash("error_msg");
+  res.locals.error = req.flash("error");
+  res.locals.user = req.user || null;
   next();
 });
 
@@ -108,6 +110,7 @@ app.get("/404", (req, res) => {
 
 app.get("/categorias/:slug", (req, res) => {
   Categoria.findOne({ slug: req.params.slug })
+    .lean()
     .then((categoria) => {
       if (categoria) {
         Postagem.find({ categoria: categoria._id })
