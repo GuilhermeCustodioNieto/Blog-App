@@ -6,7 +6,10 @@ const Postagem = new Schema({
     type: String,
     required: true,
   },
-  slug: {},
+  slug: {
+    type: String,
+    required: true,
+  },
   descricao: {
     type: String,
     required: true,
@@ -17,7 +20,7 @@ const Postagem = new Schema({
   },
   categoria: {
     type: Schema.Types.ObjectId,
-    ref: "categorias",
+    ref: "Categorias",
     required: true,
   },
   data: {
@@ -26,4 +29,4 @@ const Postagem = new Schema({
   },
 });
 
-mongoose.Mongoose.model("postagens", Postagem);
+mongoose.model("Postagens", Postagem);
