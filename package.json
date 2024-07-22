@@ -8,5 +8,16 @@
     "mongoose": "^8.4.4",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
-  }
+  },
+  "name": "blog-app",
+  "description": "Um app de blog usando NodeJS e express",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "author": "Guilherme Custódio Nieto",
+  "license": "ISC"
 }

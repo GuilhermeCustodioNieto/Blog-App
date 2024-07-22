@@ -144,7 +144,7 @@ app.use("/admin", admin);
 app.use("/usuarios", usuarios);
 
 // Outros
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 app.listen(port, () => {
-  console.log(`Servidor rodando em http://localhost:${port}`);
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
 });
